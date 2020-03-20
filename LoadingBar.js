@@ -23,19 +23,22 @@ function useInterval(callback, delay) {
 }
 
 
-const App = () => {
+const LoadingBar = () => {
   let animation = useRef(new Animated.Value(0));
   const [progress, setProgress] = useState(0);
+
   useInterval(() => {
-    if(progress < 50) {
+    if(progress < 100) {
       setProgress(progress + 5);
+    } else {
+        // TODO go to next screen.
     }
   }, 1000);
 
   useEffect(() => {
     Animated.timing(animation.current, {
       toValue: progress,
-      duration: 50
+      duration: 100
     }).start();
   },[progress])
 
@@ -44,17 +47,17 @@ const App = () => {
     outputRange: ["0%", "100%"],
     extrapolate: "clamp"
   })
+
   return (
     <View style={styles.container}>
       <View style={styles.progressBar}>
-        <Animated.View style={[StyleSheet.absoluteFill], {backgroundColor: "#01875F", width }} />
+        <Animated.View style={[StyleSheet.absoluteFill, {backgroundColor: "#01875F", width }]} />
       </View>
-
     </View>
   );
 }
 
-export default App;
+export default LoadingBar;
 
 const styles = StyleSheet.create({
   container: {
