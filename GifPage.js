@@ -1,35 +1,47 @@
 import React, { useState } from "react";
 import { StyleSheet, Image, Text, Button, View } from 'react-native';
-import { TouchableHighlight} from 'react-native';
+import Spinner from 'react-native-loading-spinner-overlay';
 
+//Need to be done!
+export default GifPage;
 
 function GifPage() {
-   
+      
+    this.state = {
+        visibleLoader: false,
+        buttonText: "Let's do it!",
+    
+    };
+
     return (
-        <View style={[styles.container, modalVisible ? { backgroundColor: 'rgba(0,0,0,0.3)' } : '']}>
+        <View style={[styles.container]}>
             <Image
                 source={require("./assets/trumpet.gif")}
                 resizeMode="contain"
                 style={styles.image}
             ></Image>
-            <Text style={styles.loremIpsum}>
-                    Now you can start <Text style={{ color: '#01875F' }}>
-                    {''} learning German,
-                    {"\n"}by scanning objects{"\n"}around you!
-                </Text>
-            </Text>
-          
-            <View style={styles.button}>
-                <Button
-                    
-                    color="#01875F"
-                    onPress={() => {
-                      title="Let's do it!"
-                    }}>
-                </Button>
 
-            </View>
+            <Text style={styles.loremIpsum}>
+                Now you can start <Text style={{ color: '#01875F' }}>
+                    {''} learning German   
+                    {''} by scanning objects around you!
+            </Text>
+
+            </Text>
+
+            <Spinner
+                visible={this.state.visibleLoader}
+            />
+
+            <Button
+                title={this.state.buttonText}
+                color="#01875F"
+                onPress={() => {
+                    this.state.visibleLoader = true;
+                    this.state.buttonText = 'Loading...';
+                }} />
         </View>
+
     );
 }
 
@@ -40,9 +52,9 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
     },
     item: {
-        width: '40%', 
-        marginLeft: 20, 
-        marginTop: 40 
+        width: '40%',
+        marginLeft: 20,
+        marginTop: 40
     },
     itemtext: {
         width: '85%',
@@ -73,6 +85,5 @@ const styles = StyleSheet.create({
         marginTop: 50,
         marginLeft: 120,
     },
-   
+
 });
-export default GifPage;
