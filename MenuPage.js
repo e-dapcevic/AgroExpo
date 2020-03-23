@@ -140,7 +140,7 @@ const styles= StyleSheet.create({
     height: 16,
     color: "rgba(21,40,220,1)",
     fontSize: 12,
-    fontFamily: "roboto-700",
+    fontFamily: "sans-serif",
     marginTop: 5
   },
     logInRow: {
