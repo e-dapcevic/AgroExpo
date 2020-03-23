@@ -1,6 +1,7 @@
-import * as React from 'react';
+import React, { Component } from "react";
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+//import MenuPage from './MenuPage';
 import GifPage from './GifPage';
 
 
@@ -16,7 +17,7 @@ const MyTheme = {
 
 function App() {
   return (
-    <NavigationContainer  theme={MyTheme}>
+    <NavigationContainer theme={MyTheme}>
       <Stack.Navigator initialRouteName="GifPage" screenOptions={{
         headerShown: false
       }}>
@@ -24,7 +25,7 @@ function App() {
         {/* <Stack.Screen name="DropdownPage" component={DropdownPage} /> */}
         {/* <Stack.Screen name="CameraPermission" component={CameraPermission} /> */}
         <Stack.Screen name="GifPage" component={GifPage}/>
-        {/* <Stack.Screen name="MenuPage" component={MenuPage}/> */}
+        {/* <Stack.Screen name="GifPage" component={GifPage}/> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
