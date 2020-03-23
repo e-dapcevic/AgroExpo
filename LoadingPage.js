@@ -6,26 +6,29 @@ import LoadingBar from './LoadingBar'
 function LoadingPage({ navigation }) {
 return (
 <View style={styles.container}>
-<View style={styles.textRow}>
-<Text style={styles.text}></Text>
-<View style={styles.imageStack}>
-<Image
-source={require("./assets/argo.png")}
-resizeMode="contain"
-style={styles.image}
-></Image>
-<Text style={styles.argo}>ARGO</Text>
-</View>
-</View>
-<Text style={styles.loremIpsum}  onPress={() => navigation.navigate('DropdownPage')}>Learn words on the go</Text>
-<LoadingBar/>
+    <View style={styles.textRow}>
+        <View style={styles.imageStack}>    
+            <Image
+                source={require("./assets/argo.png")}
+                resizeMode="contain"
+                style={styles.image}>
+            </Image>
+
+            <Text style={styles.argo}>ARGO</Text>
+        </View>
+    </View>
+
+    <Text style={styles.loremIpsum}  onPress={() => navigation.navigate('DropdownPage')}>Learn words on the go</Text>
+
+    <LoadingBar />
 </View>
 );
 }
 
 const styles = StyleSheet.create({
 container: {
-flex: 1
+flex: 1,
+margin:10,
 },
 text: {
 color: "#121212",
