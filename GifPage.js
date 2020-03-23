@@ -1,89 +1,94 @@
 import React, { useState } from "react";
-import { StyleSheet, Image, Text, Button, View } from 'react-native';
+import { StyleSheet, View, Text, Image, Button, TouchableOpacity } from "react-native";
 import Spinner from 'react-native-loading-spinner-overlay';
+import { black } from "color-name";
 
-//Need to be done!
-export default GifPage;
-
-function GifPage() {
-      
-    this.state = {
-        visibleLoader: false,
-        buttonText: "Let's do it!",
-    
-    };
+function GifPage({ navigation }) {
+    const [spinner, setSpinner] = useState(false);
 
     return (
-        <View style={[styles.container]}>
-            <Image
-                source={require("./assets/trumpet.gif")}
-                resizeMode="contain"
-                style={styles.image}
-            ></Image>
+        <View style={styles.container}>
+            <View style={styles.textRow}>
+                <Text style={styles.text}></Text>
 
-            <Text style={styles.loremIpsum}>
-                Now you can start <Text style={{ color: '#01875F' }}>
-                    {''} learning German   
-                    {''} by scanning objects around you!
-            </Text>
+                <View style={styles.imageStack}>
+                    <Image
+                        source={require("./assets/trumpet.gif")}
+                        resizeMode="contain"
+                        style={styles.image}
+                    ></Image>
 
-            </Text>
+                    <View style={{ display: 'flex', flexDir: 'row', alignItems: 'center' }}>
+                        <Text style={styles.loremIpsum}>
+                            Now you can start </Text>
+                        <Text style={styles.loremIpsumGreen}>
+                            {''}learning German {''} </Text>
+                        <Text style={styles.loremIpsum}>by scanning objects around you!</Text>
+                    </View>
 
-            <Spinner
-                visible={this.state.visibleLoader}
-            />
+                    <View style={{ display: 'flex', alignItems: 'center', marginTop: 20 }}>
+                        <Spinner
+                            visible={spinner}
+                            textContent={'Loading...'}
+                            textStyle={styles.spinnerTextStyle}
+                        />
+                    </View>
+                </View>
+            </View>
 
-            <Button
-                title={this.state.buttonText}
-                color="#01875F"
-                onPress={() => {
-                    this.state.visibleLoader = true;
-                    this.state.buttonText = 'Loading...';
-                }} />
+            <View style={{ textAlign: 'center', position: 'absolute', bottom: 40, left: '24%' }}>
+                <TouchableOpacity style={styles.buttonContainer} onPress={() => {
+                    setSpinner(true);
+
+                    setInterval(() => {
+                        // TODO add next page: navigation.navigate('PageName');
+                        setSpinner(false);
+                    }, 2000);
+                }}>
+                    <Text style={styles.buttonText}>Let's do it!</Text>
+                </TouchableOpacity>
+            </View>
         </View>
-
     );
 }
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-    },
-    item: {
-        width: '40%',
-        marginLeft: 20,
-        marginTop: 40
-    },
-    itemtext: {
-        width: '85%',
-        marginLeft: 10
     },
     image: {
-        width: 181,
-        height: 101,
+        width: 321,
+        height: 261,
         marginTop: 210,
-        marginLeft: 120
-    },
-    imagesmall: {
-        width: 35,
-        height: 60,
-        marginTop: 15
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginBottom: 'auto'
     },
     loremIpsum: {
         width: 237,
-        height: 73,
         color: "#121212",
         fontWeight: "bold",
-        marginTop: 35,
-        marginLeft: 100,
-        fontSize: 21
+        fontSize: 21,
+        textAlign: 'center'
     },
-    button: {
-        width: 159,
-        marginTop: 50,
-        marginLeft: 120,
+    loremIpsumGreen: {
+        color: "#01875F",
+        fontWeight: "bold",
+        fontSize: 21,
+        textAlign: 'center'
     },
-
+    buttonContainer: {
+        marginTop: 20,
+        paddingTop: 10,
+        paddingBottom: 10,
+        paddingLeft: 60,
+        paddingRight: 60,
+        backgroundColor: '#01875F',
+        borderRadius: 40,
+    },
+    buttonText: {
+        color: '#fff',
+        fontSize: 22,
+        fontWeight: 'bold',
+    }
 });
+export default GifPage;
