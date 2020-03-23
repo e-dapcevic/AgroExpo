@@ -29,7 +29,6 @@ function GifPage({ navigation }) {
                     <View style={{ display: 'flex', alignItems: 'center', marginTop: 20 }}>
                         <Spinner
                             visible={spinner}
-                            textContent={'Loading...'}
                             textStyle={styles.spinnerTextStyle}
                         />
                     </View>
@@ -40,9 +39,10 @@ function GifPage({ navigation }) {
                 <TouchableOpacity style={styles.buttonContainer} onPress={() => {
                     setSpinner(true);
 
-                    setInterval(() => {
+                    const interval = setInterval(() => {
                         // TODO add next page: navigation.navigate('PageName');
                         setSpinner(false);
+                        clearInterval(interval);
                     }, 2000);
                 }}>
                     <Text style={styles.buttonText}>Let's do it!</Text>
